@@ -36,7 +36,13 @@ jobs:
 
       - name: meow
         uses: ./.github/actions/cat-facts
+        id: cat
 
+      - name: create-issue
+        uses: ./.github/actions/issue-maker
+        with:
+          repoToken: ${{secrets.GITHUB_TOKEN}}
+          catFact: ${{steps.cat.outputs.fact}}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 
